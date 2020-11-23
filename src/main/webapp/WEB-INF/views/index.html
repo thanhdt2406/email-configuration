@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Configuration</title>
+</head>
+<body>
+<h1>Email Configuration</h1>
+<h3><a th:href="@{/create}">Create New Config</a></h3>
+<table border="1">
+    <tr>
+        <th>Languages</th>
+        <th>Page Size</th>
+        <th>Spam filter</th>
+        <th>Signature</th>
+        <th>Option</th>
+    </tr>
+    <tr th:each="c : ${configs}">
+        <td th:text="${c.getLanguage()}"></td>
+        <td th:text="${c.getPageSize()}"></td>
+        <div>
+            <td th:if="${c.isSpamFilter()}">Enable spams filter</td>
+            <td th:if="${!c.isSpamFilter()}">Disable spams filter</td>
+        </div>
+        <td th:text="${c.getSignature()}"></td>
+        <td>
+            <a th:href="@{/edit/__${c.getId()}__}">Edit</a>
+            <a th:href="@{/delete/__${c.getId()}__}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

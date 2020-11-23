@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new config</title>
+</head>
+<body>
+<h3><a th:href="@{/index}">Back to home page</a></h3>
+<form th:action="@{/create}" method="post" th:object="${emailConfig}">
+    <div>
+        <label>Language</label>
+        <select name="language">
+            <option value="English">English</option>
+            <option value="Vietnamese">Vietnamese</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Chinese">Chinese</option>
+        </select>
+    </div>
+    <div>
+        <label>Page Size</label>
+        Show <input type="number" name="pageSize" style="width: 30px"> emails per page
+    </div>
+    <div>
+        <label>Spam filter</label>
+        <input type="checkbox" name="spamFilter" value="true">Enable spams filter
+    </div>
+    <div>
+        <label>Signature</label>
+        <textarea name="signature" rows="4" width="50"></textarea>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit config</title>
+</head>
+<body>
+<h3><a th:href="@{/index}">Back to home page</a> </h3>
+<form th:action="@{/edit}" method="post" th:object="${emailConfig}">
+    <div>
+        <label hidden>ID</label>
+        <input type="text" th:value="${emailConfig.getId()}" hidden>
+    </div>
+    <div>
+        <label>Language</label>
+        <select name="language">
+            <option th:value="${emailConfig.getLanguage()}" th:text="${emailConfig.getLanguage()}" selected></option>
+            <option value="English">English</option>
+            <option value="Vietnamese">Vietnamese</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Chinese">Chinese</option>
+        </select>
+    </div>
+    <div>
+        <label>Page Size:</label>
+        Show <input type="number" name="pageSize" th:value="${emailConfig.getPageSize()}" style="width: 30px"> emails per page
+    </div>
+    <div>
+        <label>Spam filter</label>
+        <div th:if="${emailConfig.isSpamFilter()}">
+            <input type="checkbox" name="spamFilter" value="true" checked>Enable spams filter
+        </div>
+        <div th:if="${!emailConfig.isSpamFilter()}">
+            <input type="checkbox" name="spamFilter" value="true">Enable spams filter
+        </div>
+    </div>
+    <div>
+        <label>Signature</label>
+        <textarea name="signature" rows="4" width="50" th:value="${emailConfig.getSignature()}"></textarea>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
